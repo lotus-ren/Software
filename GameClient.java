@@ -43,7 +43,7 @@ public class GameClient {
         socket.getOutputStream())), true); // 送信バッファ設定
 
         
-        System.out.println("BlackJackへようこそ、あなたは1000円を持っている。ゲームを始めましょう！");
+        System.out.println("BlackJackへようこそ、あなたは1000円を持っています。Game Start！");
         
         while(true){
         //select mode
@@ -80,7 +80,7 @@ public class GameClient {
             while (true) {
                //No double down because the money is not enough
                if(player.getMoney() < player.getBet() * 2){
-                   System.out.println("これからの操作を選んでください");
+                   System.out.println("操作を選んでください");
                    System.out.println("1.カードを引く 2.止める ");
                    int choice = scanner.nextInt();
                    //カードを引く
@@ -106,7 +106,7 @@ public class GameClient {
                        break;
                    }
                } else {
-                   System.out.println("これからの操作を選んでください");
+                   System.out.println("操作を選んでください");
                    System.out.println("1.カードを引く 2.ダブルダウン 3.止める");
                    int choice = scanner.nextInt();
                    //カードを引く
@@ -263,10 +263,10 @@ public class GameClient {
                playerChoose();
                break;
            case 3 :
-               System.out.println("ご参加ありがとうございます，また遊んで来てください");
+               System.out.println("ご参加ありがとうございます，また遊びに来てください");
                break;
            default:
-               System.out.println("入力エラー，もう一回選んでください");
+               System.out.println("入力エラー，もう1度選んでください");
        }
    }while (choice > 3 || choice < 1);
 }
@@ -278,7 +278,7 @@ public static  boolean chooseBet() {
    do {
        makeBet = scanner.nextInt();
        if(makeBet > player.getMoney()){
-           System.out.println("残高が足りない，もう一回入力してください");
+           System.out.println("残高が足りません，もう一度入力してください");
        return false;
        }else{
        player.setBet(makeBet);
@@ -293,20 +293,20 @@ public static void showCards(){
 }
 
 public static  void playerFail() {
-   System.out.println("あなたはこのゲームに負けました");
+   System.out.println("You Lose");
    int bet = player.getBet();
    int money = player.getMoney() - bet;
    //残高を減らす
    player.setMoney(money);
    System.out.println("あなたは" + bet + "円負けました、残り" + money + "円");
    if(player.getMoney() <= 0){
-       System.out.println("あなたは破産しました、1000円を差し上げます、ゲームを楽しんでください");
+       System.out.println("破産しました...、1000円を差し上げます、ゲームを楽しんでください");
        player.setMoney(1000);
        
    }
 }
 public static  void playerWin() {
-   System.out.println("あなたはこのゲームに勝ちました");
+   System.out.println("You Win");
    int bet = player.getBet();
    int money = player.getMoney() + bet;
    //残高を増やす
@@ -315,12 +315,12 @@ public static  void playerWin() {
 }
 
 public static void noOneWin() {
-   System.out.println("ウインナーはありません、残高が変わりません");
+   System.out.println("Draw");
    System.out.println("あなたの残高は" + player.getMoney() + "円");
 }
 
 public  static void playerWinMore() {
-   System.out.println("あなたはBlackJackでこのゲームに勝ちました！");
+   System.out.println("You Win！");
    int bet = player.getBet();
    int money = player.getMoney() + bet + bet / 2;
    //残高を増やす
